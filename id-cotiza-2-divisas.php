@@ -48,3 +48,20 @@ function borrarCotiza2Divisas(){
 
 register_activation_hook(__FILE__,'activarCotiza2Divisas');
 register_uninstall_hook(__FILE__, 'borrarCotiza2Divisas');
+
+add_action('admin_menu','mostrarMenuCotiza2Divisas');
+
+function mostrarMenuCotiza2Divisas() {
+
+    add_menu_page(
+        
+        '[Industria Digital] Edición de los Valores de Cotiza 2 Divisas', // Título de la página
+        'Cotiza 2 Divisas', // Título del menú
+        'manage_options', // Capability. Quién tiene acceso al menú (Administradores)
+        'id-cotiza-2-divisas', // Slug
+        null, // Función que muestra el contenido
+        plugin_dir_url(__FILE__).'icon.svg', // Ubicación del ícono que se muestra en el menú
+        '2' // Priority. Ubicación de esta opción en el menú de administración de wordpress
+
+    );
+}
