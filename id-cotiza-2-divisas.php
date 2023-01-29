@@ -3,7 +3,7 @@
 Plugin Name: ID Cotiza 2 Divisas
 Plugin URI: https://www.industriadigital.ar
 Description: Muestra los valores de 2 cotizaciones introducidas manualmente | Shortcode [id_cotiza]
-Version: 0.0.2 VALORES MANUALES
+Version: 0.0.6 VALORES MANUALES
  * Requires at least: 5.2
  * Requires PHP:      7.2
 Author: Ricardo Medina
@@ -30,10 +30,12 @@ function activarCotiza2Divisas(){
 
     //agregamos los valores por defecto
     $valoresPorDefecto = [
-        'oficialCompra'   => '333.33',
-        'oficialVenta'    => '333.33',
-        'blueCompra'   => '333.33',
-        'blueVenta'    => '333.33'
+        'cotiza1'   => 'Dólar Oficial',
+        'cotiza1Compra'   => '333.33',
+        'cotiza1Venta'    => '333.33',
+        'cotiza2'   => 'Dólar Blue',
+        'cotiza2Compra'   => '333.33',
+        'cotiza2Venta'    => '333.33'
     ];
     
     update_option( 'id-cotiza-2-divisas-valores', $valoresPorDefecto);
@@ -59,9 +61,31 @@ function mostrarMenuCotiza2Divisas() {
         'Cotiza 2 Divisas', // Título del menú
         'manage_options', // Capability. Quién tiene acceso al menú (Administradores)
         'id-cotiza-2-divisas', // Slug
-        null, // Función que muestra el contenido
+        'editarCotizaciones', // Función que muestra el contenido
         plugin_dir_url(__FILE__).'icon.svg', // Ubicación del ícono que se muestra en el menú
         '2' // Priority. Ubicación de esta opción en el menú de administración de wordpress
 
     );
+}
+
+function editarCotizaciones(){
+
+
+
+}
+
+function obtenerValorDivisa( $clave ) {
+
+    $divisasValores = get_option( 'id-cotiza-2-divisas-valores' );
+    return isset( $divisasValores[ $clave ] ) ? $divisasValores[ $clave] : false;
+
+}
+
+
+function actualizarValorDivisa( $clave, $valor ) {
+
+    $divisasValores = get_option( 'id-cotiza-2-divisas-valores' );
+    $divisasValores[ $clave ] = $valor;
+    return update_option( 'id-cotiza-2-divisas-valores', $divisasValores);
+
 }
