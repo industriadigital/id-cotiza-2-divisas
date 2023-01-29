@@ -3,7 +3,7 @@
 Plugin Name: ID Cotiza 2 Divisas
 Plugin URI: https://www.industriadigital.ar
 Description: Muestra los valores de 2 cotizaciones introducidas manualmente | Shortcode [id_cotiza]
-Version: 0.0.6 VALORES MANUALES
+Version: 0.0.7 VALORES MANUALES
  * Requires at least: 5.2
  * Requires PHP:      7.2
 Author: Ricardo Medina
@@ -35,7 +35,9 @@ function activarCotiza2Divisas(){
         'cotiza1Venta'    => '333.33',
         'cotiza2'   => 'Dólar Blue',
         'cotiza2Compra'   => '333.33',
-        'cotiza2Venta'    => '333.33'
+        'cotiza2Venta'    => '333.33',
+        'actualizado' => date_i18n( get_option( 'date_format' )),
+        'por' => 'admin'
     ];
     
     update_option( 'id-cotiza-2-divisas-valores', $valoresPorDefecto);
@@ -70,7 +72,7 @@ function mostrarMenuCotiza2Divisas() {
 
 function editarCotizaciones(){
 
-
+    require_once plugin_dir_path( __FILE__ ) . 'actualizar-divisas.php';
 
 }
 
