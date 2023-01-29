@@ -38,7 +38,7 @@
                         'cotiza2'   => sanitize_textarea_field($_POST['cotiza2']),
                         'cotiza2Compra'   => $_POST['cotiza2Compra'],
                         'cotiza2Venta'    => $_POST['cotiza2Venta'],
-                        'actualizado' => date_i18n( get_option( 'date_format' )),
+                        'actualizado' => date('j/n/Y H:i:s'),
                         'por' => $usuario -> user_login
                     ];
 
